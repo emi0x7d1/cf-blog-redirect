@@ -13,6 +13,17 @@
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		return new Response('Hello World!');
+		const urlStr = request.url
+		const url = new URL(urlStr)
+		const path = url.pathname
+		
+		const res = new Response(null, {
+			status: 301,
+			headers: {
+				Location: `https://emi0x7d1.dev/blog${path}`
+			}
+		});
+
+		return res;
 	},
 } satisfies ExportedHandler<Env>;
